@@ -1,16 +1,15 @@
 /* =============================================================
    DESIGN: Dark Luxury — Investor Pitch for CodexYield
-   pitch.codexyield.com — Private placement memorandum style
-   Sections: Cover → Opportunity → Strategy → Intelligence
-             → Performance → Terms → Founder → Apply
-   Live data: BTC price + factor count from tradinghq API
+   pitch.codexyield.com — Institutional investor presentation
+   Sections: Cover → Problem → Philosophy → System → Performance
+             → Security → Founder → Contact
    ============================================================= */
 import { useEffect, useRef, useState } from "react";
 import { useLiveStats } from "@/hooks/useLiveStats";
 import {
   ArrowRight, Shield, TrendingUp, BarChart3, Lock,
-  ChevronDown, Brain, Activity, Target, DollarSign,
-  Zap, CheckCircle,
+  ChevronDown, Brain, Activity, Target,
+  Zap, CheckCircle, Quote,
 } from "lucide-react";
 
 const FOUNDER_IMG = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663096452459/CmqeCOjCelCcyIJP.png";
@@ -65,18 +64,10 @@ function SectionHeader({ eyebrow, title, sub }: { eyebrow: string; title: string
   );
 }
 
-const PERF_DATA = [
-  { coin: "SOL/BTC", factor: "RSI 14", btcReturn: "3.57%", stop: "Trail L", years: "2020–2026" },
-  { coin: "SOL/BTC", factor: "Change 7D", btcReturn: "3.55%", stop: "Trail L", years: "2020–2026" },
-  { coin: "ETH/BTC", factor: "RSI 14", btcReturn: "2.84%", stop: "Trail M", years: "2017–2026" },
-  { coin: "XRP/BTC", factor: "Momentum 30D", btcReturn: "2.61%", stop: "Trail L", years: "2018–2026" },
-  { coin: "LINK/BTC", factor: "RSI 14", btcReturn: "2.43%", stop: "Trail M", years: "2019–2026" },
-];
-
 export default function Home() {
   const stats = useLiveStats();
   const { ref: statsRef, inView: statsInView } = useInView();
-  const factorCount = useCountUp(stats.totalFactors, 1600, statsInView);
+  const factorCount = useCountUp(stats.totalFactors ?? 111, 1600, statsInView);
   const [formData, setFormData] = useState({ name: "", email: "", investable: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
@@ -85,7 +76,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ background: "#0A0A0A", color: "#F5F0E8" }}>
 
-      {/* ── TOP BAR ── */}
+      {/* TOP BAR */}
       <div
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 h-14 border-b"
         style={{ background: "rgba(10,10,10,0.96)", backdropFilter: "blur(12px)", borderColor: "rgba(255,255,255,0.06)" }}
@@ -93,7 +84,7 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <span className="text-base font-bold tracking-tight" style={{ color: ORANGE }}>CODEXYIELD</span>
           <span className="text-gray-600 text-sm hidden md:block">|</span>
-          <span className="text-gray-500 text-xs uppercase tracking-widest hidden md:block">Investor Pitch</span>
+          <span className="text-gray-500 text-xs uppercase tracking-widest hidden md:block">Investor Presentation</span>
         </div>
         <div className="flex items-center gap-4 text-sm">
           {stats.btcPrice && (
@@ -110,12 +101,12 @@ export default function Home() {
           )}
           <div className="hidden md:flex items-center gap-2">
             <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#22c55e" }} />
-            <span className="text-gray-400 text-xs">{stats.factorsSignaling}/{stats.totalFactors} factors live</span>
+            <span className="text-gray-400 text-xs">System live</span>
           </div>
         </div>
       </div>
 
-      {/* ── COVER ── */}
+      {/* COVER */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-14">
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -128,49 +119,49 @@ export default function Home() {
           >
             Confidential — Qualified Investors Only
           </div>
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-none tracking-tight">
-            <span style={{ color: ORANGE }}>5%+</span><br />
-            <span className="text-white">BTC / Year</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-none tracking-tight">
+            <span className="text-white">Bitcoin Treasury</span><br />
+            <span style={{ color: ORANGE }}>Codex</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-3 max-w-2xl mx-auto leading-relaxed">
-            Bitcoin-denominated alpha from systematic altcoin rotation.
+            Institutional-grade Bitcoin accumulation powered by AI, machine learning, and 69 years of family investment legacy.
           </p>
           <p className="text-gray-500 text-sm uppercase tracking-widest mb-12">
-            Not USD appreciation. Pure BTC stack growth.
+            Not more dollars. More Bitcoin.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#apply"
+              href="#contact"
               className="px-8 py-4 rounded font-bold text-black text-sm uppercase tracking-widest transition-all hover:opacity-90"
               style={{ background: ORANGE }}
-              onClick={(e) => { e.preventDefault(); document.querySelector("#apply")?.scrollIntoView({ behavior: "smooth" }); }}
+              onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
             >
-              Request Access <ArrowRight className="inline-block ml-1 w-4 h-4" />
+              Schedule a Consultation <ArrowRight className="inline-block ml-1 w-4 h-4" />
             </a>
             <a
-              href="#opportunity"
+              href="#problem"
               className="px-8 py-4 rounded font-bold text-sm uppercase tracking-widest border transition-all hover:bg-white/5"
               style={{ color: ORANGE, borderColor: ORANGE_BORDER }}
-              onClick={(e) => { e.preventDefault(); document.querySelector("#opportunity")?.scrollIntoView({ behavior: "smooth" }); }}
+              onClick={(e) => { e.preventDefault(); document.querySelector("#problem")?.scrollIntoView({ behavior: "smooth" }); }}
             >
-              View the Pitch
+              View the Presentation
             </a>
           </div>
-          <p className="text-gray-600 text-xs mt-8">CodexYield · Halfacre Research · $100K Minimum</p>
+          <p className="text-gray-600 text-xs mt-8">CodexYield · Halfacre Research · $100K Minimum · Qualified Investors Only</p>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <ChevronDown className="w-6 h-6 text-gray-600" />
         </div>
       </section>
 
-      {/* ── KEY STATS ── */}
+      {/* KEY STATS */}
       <section ref={statsRef} className="py-16 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { value: statsInView ? `${factorCount}` : "—", label: "Quantitative Factors", sub: "Backtested 2015–2026" },
-            { value: "7", label: "ML Models", sub: "XGBoost, daily retrain" },
-            { value: "3.57%", label: "Top Factor BTC/yr", sub: "SOL/BTC RSI 14, Trail L" },
-            { value: "4,100+", label: "Training Rows", sub: "Walk-forward validated" },
+            { value: "24", label: "Years Experience", sub: "Investment & quantitative analysis" },
+            { value: "69", label: "Year Family Legacy", sub: "Institutional investment principles" },
+            { value: statsInView ? `${factorCount}` : "—", label: "Quantitative Factors", sub: "Backtested 2015 to 2026" },
+            { value: "$200M", label: "Insurance Coverage", sub: "Digital asset protection" },
           ].map((s) => (
             <div key={s.label} className="p-6 rounded-lg border text-center"
               style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
@@ -182,108 +173,118 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── THE OPPORTUNITY ── */}
-      <section id="opportunity" className="py-24 px-6">
+      {/* THE PROBLEM */}
+      <section id="problem" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <SectionHeader
-            eyebrow="The Opportunity"
-            title="Bitcoin Grows. We Grow It Faster."
-            sub="Most Bitcoin holders earn only from USD appreciation. CodexYield earns additional BTC by rotating into altcoins at algorithmically optimal moments — then rotating back."
+            eyebrow="The Problem"
+            title="Most Bitcoin Holders Are Thinking in the Wrong Currency."
+            sub="The prevailing benchmark for Bitcoin success is still measured in dollars. That is a fiat-centric trap — and it leaves significant accumulation potential on the table."
           />
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 icon: <TrendingUp className="w-6 h-6" style={{ color: ORANGE }} />,
-                title: "The Gap",
-                body: "Bitcoin has returned 27,248% over 10 years. But passive holders leave BTC alpha on the table. Systematic altcoin rotation generates 5%+ additional BTC per year.",
+                title: "The Fiat Matrix",
+                body: "Most participants in the crypto space still operate within a fiat matrix. Their ultimate benchmark is their local currency. When you measure Bitcoin success in dollars, you are playing the wrong game entirely.",
               },
               {
                 icon: <Target className="w-6 h-6" style={{ color: ORANGE }} />,
-                title: "The Method",
-                body: "111 quantitative factors screen ETH, SOL, XRP, and LINK against BTC daily. When 3+ high-conviction factors align, we rotate. When they diverge, we hold BTC.",
+                title: "The Passive Trap",
+                body: "Buy and hold is a valid strategy. But it is the floor, not the ceiling. Sophisticated investors who understand Bitcoin as the base accounting unit can systematically accumulate more of it through disciplined, quantitative rotation.",
               },
               {
                 icon: <Shield className="w-6 h-6" style={{ color: ORANGE }} />,
-                title: "The Discipline",
-                body: "No leverage. No derivatives. No speculation. All commodities. Trailing stops protect every position. Algorithmic-assisted — Matthew makes the final call.",
+                title: "The Infrastructure Gap",
+                body: "Institutional adoption of Bitcoin requires institutional-grade infrastructure. Regulated custody, comprehensive insurance, and algorithmic systems built on a data framework as robust as any major financial institution. Most offerings do not meet that standard.",
               },
             ].map((card) => (
               <div key={card.title} className="p-6 rounded-lg border"
                 style={{ background: "#111", borderColor: "rgba(255,255,255,0.08)" }}>
                 <div className="mb-4">{card.icon}</div>
                 <h3 className="text-lg font-bold mb-3" style={{ color: ORANGE }}>{card.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{card.body}</p>
+                <p className="text-gray-400 leading-relaxed text-sm">{card.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── THE STRATEGY ── */}
-      <section id="strategy" className="py-24 px-6 border-t border-white/5" style={{ background: "#0D0D0D" }}>
+      {/* SIGNATURE QUOTE */}
+      <section className="py-20 px-6 border-t border-white/5" style={{ background: "#0D0D0D" }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <Quote className="w-10 h-10 mx-auto mb-8 opacity-30" style={{ color: ORANGE }} />
+          <blockquote className="text-2xl md:text-3xl font-light text-white leading-relaxed mb-8 italic">
+            "The promise of Bitcoin was always about building a new system outside the old walls. Yet, many have simply built decorative facades on those same crumbling walls. We are providing the tools to not only escape that matrix but to compete and win on the outside."
+          </blockquote>
+          <div className="text-sm font-bold uppercase tracking-widest" style={{ color: ORANGE }}>
+            Matthew Halfacre — Founder, Bitcoin Treasury Codex
+          </div>
+        </div>
+      </section>
+
+      {/* THE PHILOSOPHY */}
+      <section id="philosophy" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <SectionHeader
-            eyebrow="The Strategy"
-            title="Two Engines. One Goal."
-            sub="Every position is designed to return more BTC than it started with."
+            eyebrow="The Philosophy"
+            title="What If Bitcoin Was Your Accounting Unit?"
+            sub="The entire strategic calculus changes when you stop measuring success in fiat terms and start measuring it in Bitcoin."
           />
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                num: "01", title: "DCA Optimization",
-                body: "The same 111-factor engine identifies optimal USD → BTC entry points. Instead of fixed-interval DCA, clients buy at algorithmically timed moments — accumulating more BTC per dollar deployed.",
-                bullets: ["Reduces average cost basis", "Avoids buying into local tops", "Signals from on-chain, macro, and technical data"],
-              },
-              {
-                num: "02", title: "Altcoin Rotation",
-                body: "When high-conviction signals align across ETH, SOL, XRP, or LINK, capital rotates from BTC into the target altcoin. When the altcoin outperforms, it converts back to more BTC than the rotation started with.",
-                bullets: ["Tranche entries: T1 at signal, T2/T3 on pullbacks", "Trailing stops: 3%, 5%, or 10% by conviction", "All sells manual — Matthew's final call"],
-              },
-            ].map((s) => (
-              <div key={s.num} className="p-8 rounded-lg border"
-                style={{ background: "#111", borderColor: ORANGE_BORDER }}>
-                <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>Strategy {s.num}</div>
-                <h3 className="text-2xl font-bold text-white mb-4">{s.title}</h3>
-                <p className="text-gray-400 mb-6 leading-relaxed text-sm">{s.body}</p>
-                <ul className="space-y-2">
-                  {s.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm text-gray-300">
-                      <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: ORANGE }} />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="p-8 rounded-lg border" style={{ background: "#111", borderColor: ORANGE_BORDER }}>
+              <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>The Bitcoin Standard</div>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Bitcoin Treasury Codex operates on a single, unwavering principle: the goal is not to increase the dollar value of your holdings. The goal is to increase the total number of Bitcoin you own.
+              </p>
+              <p className="text-gray-400 leading-relaxed text-sm">
+                Every trade, every signal, every decision in the system is evaluated against one question: does this result in more Bitcoin? Not more dollars. More Bitcoin.
+              </p>
+            </div>
+            <div className="p-8 rounded-lg border" style={{ background: "#111", borderColor: ORANGE_BORDER }}>
+              <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>The Method</div>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                When select commodity assets present asymmetric opportunities relative to Bitcoin, the system rotates a measured portion of holdings into that asset. When the asset outperforms, it converts back to more Bitcoin than the rotation started with.
+              </p>
+              <p className="text-gray-400 leading-relaxed text-sm">
+                No leverage. No derivatives. No speculation. Spot commodities only. Algorithmic-assisted — Matthew makes every final trade decision.
+              </p>
+            </div>
+          </div>
+          <div className="p-6 rounded-lg border text-center" style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
+            <p className="text-gray-300 text-sm leading-relaxed max-w-2xl mx-auto">
+              "My family has 69 years of investment experience, and the principles of disciplined, data-driven analysis do not change. What changes is the asset. We have simply translated those time-tested strategies into the native language of Bitcoin."
+            </p>
+            <div className="text-xs font-bold uppercase tracking-widest mt-4" style={{ color: ORANGE }}>Matthew Halfacre</div>
           </div>
         </div>
       </section>
 
-      {/* ── THE INTELLIGENCE ── */}
-      <section id="intelligence" className="py-24 px-6">
+      {/* THE SYSTEM */}
+      <section id="system" className="py-24 px-6 border-t border-white/5" style={{ background: "#0D0D0D" }}>
         <div className="max-w-5xl mx-auto">
           <SectionHeader
-            eyebrow="The Intelligence"
-            title="111 Factors. 7 Models. Daily."
-            sub="The signal engine runs every day at 2 AM UTC. By market open, every factor is scored, every model retrained, every recommendation live."
+            eyebrow="The System"
+            title="111 Factors. 7 Models. One Goal."
+            sub="The Codex Engine runs every day. By market open, every factor is scored, every model updated, every signal live."
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
             {[
               {
-                icon: <Brain className="w-5 h-5" />, title: "7 XGBoost Models",
-                body: "BTC direction (7d/30d), on-chain cycle, macro regime, rotation signal, DCA intensity, DCA timing",
+                icon: <Brain className="w-5 h-5" />, title: "7 XGBoost ML Models",
+                body: "Covering BTC direction, on-chain cycle position, macro regime, altcoin rotation timing, and DCA optimization. Walk-forward validated — not curve-fit.",
               },
               {
-                icon: <BarChart3 className="w-5 h-5" />, title: "111 Factors",
-                body: "Technical, on-chain, macro, and sentiment — all backtested against 4,100+ days of real data",
+                icon: <BarChart3 className="w-5 h-5" />, title: "111 Quantitative Factors",
+                body: "Technical, on-chain, macroeconomic, and sentiment data — all backtested against real historical data with realistic transaction costs applied throughout.",
               },
               {
-                icon: <Activity className="w-5 h-5" />, title: "Walk-Forward Validation",
-                body: "Models validated on out-of-sample data only. No look-ahead bias. Real accuracy metrics.",
+                icon: <Activity className="w-5 h-5" />, title: "Consensus Engine",
+                body: "The system requires multiple high-conviction factors to agree before generating a rotation signal. This reduces false positives and preserves capital.",
               },
               {
-                icon: <Zap className="w-5 h-5" />, title: "Forward Tracking",
-                body: "Every signal logged. 7/14/30-day outcomes resolve automatically to measure live accuracy.",
+                icon: <Zap className="w-5 h-5" />, title: "Daily Intelligence",
+                body: "Every signal is logged and tracked against real outcomes at 7, 14, and 30-day intervals. The system measures its own accuracy continuously.",
               },
             ].map((card) => (
               <div key={card.title} className="p-5 rounded-lg border"
@@ -294,139 +295,223 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="p-5 rounded-lg border text-center"
-            style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
-            <p className="text-sm text-gray-300">
-              Live signal engine:{" "}
-              <a href="https://tradinghq.codexyield.com" target="_blank" rel="noopener noreferrer"
-                className="font-semibold hover:underline" style={{ color: ORANGE }}>
-                tradinghq.codexyield.com
-              </a>
-              {" "}— {stats.factorsSignaling}/{stats.totalFactors} factors signaling today
-            </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="p-6 rounded-lg border" style={{ background: "#111", borderColor: "rgba(255,255,255,0.08)" }}>
+              <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>DCA Engine</div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                The same 111-factor engine identifies optimal USD to Bitcoin entry points. Rather than fixed-interval dollar-cost averaging, capital is deployed at algorithmically timed moments — accumulating more Bitcoin per dollar deployed and reducing average cost basis over time.
+              </p>
+            </div>
+            <div className="p-6 rounded-lg border" style={{ background: "#111", borderColor: "rgba(255,255,255,0.08)" }}>
+              <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>Rotation Engine</div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                When high-conviction signals align across ETH, SOL, XRP, or LINK, capital rotates from Bitcoin into the target commodity. Positions are entered in tranches and protected by trailing stops. All exits are manual — Matthew's final call on every trade.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── PERFORMANCE ── */}
-      <section id="performance" className="py-24 px-6 border-t border-white/5" style={{ background: "#0D0D0D" }}>
+      {/* PERFORMANCE */}
+      <section id="performance" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <SectionHeader
             eyebrow="Backtested Performance"
-            title="Top Factors by BTC Return"
-            sub="1.6% round-trip cost applied (0.5% entry + 0.5% exit + 0.3% slippage per side). Trailing stops applied."
+            title="The Target: 5%+ BTC Per Year."
+            sub="111 quantitative factors backtested against real historical data from 2015 to 2026. Realistic transaction costs applied throughout. Results expressed in BTC-denominated annual return — the only metric that matters."
           />
-          <div className="overflow-x-auto rounded-lg border" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+          <div className="overflow-x-auto rounded-lg border mb-6" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
             <table className="w-full text-sm">
               <thead>
                 <tr style={{ background: "#111", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                  {["Pair", "Factor", "BTC Return/yr", "Stop Type", "Period"].map((h) => (
+                  {["Pair", "Factor", "BTC Return / Year", "Period"].map((h) => (
                     <th key={h} className="px-5 py-4 text-left text-xs font-bold uppercase tracking-widest"
                       style={{ color: ORANGE }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {PERF_DATA.map((row, i) => (
+                {[
+                  { coin: "ETH/BTC", factor: "Stablecoin Supply Ratio", btcReturn: "Backtested positive", years: "2017–2026" },
+                  { coin: "ETH/BTC", factor: "Yield Curve Spread", btcReturn: "Backtested positive", years: "2018–2026" },
+                  { coin: "ETH/BTC", factor: "UTXO Count Change", btcReturn: "Backtested positive", years: "2017–2026" },
+                  { coin: "ETH/BTC", factor: "Treasury 10Y Rate", btcReturn: "Backtested positive", years: "2018–2026" },
+                  { coin: "ETH/BTC", factor: "RSI 7", btcReturn: "Backtested positive", years: "2017–2026" },
+                ].map((row, i) => (
                   <tr key={i} style={{
                     background: i % 2 === 0 ? "#0A0A0A" : "#0D0D0D",
                     borderBottom: "1px solid rgba(255,255,255,0.04)",
                   }}>
                     <td className="px-5 py-4 font-mono font-semibold text-white">{row.coin}</td>
                     <td className="px-5 py-4 text-gray-300">{row.factor}</td>
-                    <td className="px-5 py-4 font-mono font-bold" style={{ color: ORANGE }}>+{row.btcReturn}</td>
-                    <td className="px-5 py-4 text-gray-400">{row.stop}</td>
+                    <td className="px-5 py-4 font-mono font-bold" style={{ color: ORANGE }}>{row.btcReturn}</td>
                     <td className="px-5 py-4 text-gray-500">{row.years}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-gray-600 text-xs mt-4 text-center">
-            Past performance does not guarantee future results. All figures are backtested. Forward performance tracking began April 2026.
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { label: "System Target", value: ">5% BTC/yr", sub: "BTC-denominated CAGR above buy-and-hold" },
+              { label: "Data History", value: "10+ Years", sub: "Daily candles from 2015 to present" },
+              { label: "Forward Tracking", value: "Live Since April 2026", sub: "Every signal tracked against real outcomes" },
+            ].map((s) => (
+              <div key={s.label} className="p-5 rounded-lg border text-center"
+                style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
+                <div className="text-xl font-bold mb-1 font-mono" style={{ color: ORANGE }}>{s.value}</div>
+                <div className="text-white text-xs font-bold uppercase tracking-widest">{s.label}</div>
+                <div className="text-gray-500 text-xs mt-1">{s.sub}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-gray-600 text-xs mt-6 text-center">
+            Backtested results do not guarantee future performance. All figures use realistic transaction costs. Forward performance tracking began April 2026. For qualified investors only.
           </p>
         </div>
       </section>
 
-      {/* ── TERMS ── */}
-      <section id="terms" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeader eyebrow="Terms" title="Simple. Aligned. Transparent." />
-          <div className="grid md:grid-cols-3 gap-6">
+      {/* SECURITY */}
+      <section id="security" className="py-24 px-6 border-t border-white/5" style={{ background: "#0D0D0D" }}>
+        <div className="max-w-5xl mx-auto">
+          <SectionHeader
+            eyebrow="Security and Custody"
+            title="Institutional Infrastructure. Client-Controlled Assets."
+            sub="Risk mitigation is not an afterthought. It is engineered into every layer of the infrastructure."
+          />
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
             {[
               {
-                icon: <DollarSign className="w-6 h-6" />, title: "$100,000", label: "Minimum Investment",
-                body: "Institutional-grade strategy requires meaningful capital to execute properly across 4 altcoin pairs.",
+                icon: <Shield className="w-6 h-6" />, title: "$200M Insurance",
+                body: "Digital assets protected by a $200 million insurance policy. Institutional-grade coverage that matches the seriousness of the capital at stake.",
               },
               {
-                icon: <Activity className="w-6 h-6" />, title: "15 bps", label: "CodexYield Fee",
-                body: "0.15% per trade. SFOX charges 25 bps total — CodexYield earns 15 bps, SFOX retains 10 bps. No management fee. No performance fee.",
+                icon: <Lock className="w-6 h-6" />, title: "SAFE Trust Custody",
+                body: "Assets held by SAFE Trust Company, a regulated Wyoming qualified custodian trust. Your Bitcoin is never commingled with firm assets.",
               },
               {
-                icon: <Lock className="w-6 h-6" />, title: "SAFE Custody", label: "Qualified Custodian",
-                body: "Assets held with SAFE Qualified Custodian Trust. 30+ liquidity venues via SFOX. No counterparty risk to CodexYield.",
+                icon: <CheckCircle className="w-6 h-6" />, title: "Client-Controlled Accounts",
+                body: "Every client owns their own account. Halfacre Research holds trading permissions only. Zero withdrawal rights. Your assets remain under your control at all times.",
               },
             ].map((card) => (
-              <div key={card.title} className="p-6 rounded-lg border text-center"
+              <div key={card.title} className="p-6 rounded-lg border"
                 style={{ background: "#111", borderColor: ORANGE_BORDER }}>
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
                   style={{ background: ORANGE_DIM, color: ORANGE }}>{card.icon}</div>
-                <div className="text-2xl font-bold mb-1" style={{ color: ORANGE }}>{card.title}</div>
-                <div className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">{card.label}</div>
-                <p className="text-gray-500 text-sm leading-relaxed">{card.body}</p>
+                <h3 className="text-lg font-bold text-white mb-3">{card.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{card.body}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── FOUNDER ── */}
-      <section id="team" className="py-24 px-6 border-t border-white/5" style={{ background: "#0D0D0D" }}>
-        <div className="max-w-4xl mx-auto">
-          <SectionHeader eyebrow="The Team" title="Matthew Halfacre" />
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="flex-shrink-0">
-              <img
-                src={FOUNDER_IMG}
-                alt="Matthew Halfacre"
-                className="w-48 h-48 rounded-full object-cover border-2"
-                style={{ borderColor: ORANGE_BORDER }}
-              />
-            </div>
-            <div>
-              <div className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>
-                CEO · Halfacre Research · CodexYield
-              </div>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                24 years of investment experience across traditional and digital asset markets.
-                69-year family legacy in financial markets. Matthew built the CodexYield signal
-                engine from the ground up — 111 factors, 7 ML models, and a backtesting
-                methodology that accounts for real-world trading costs.
-              </p>
-              <p className="text-gray-400 leading-relaxed text-sm">
-                The system is "algorithmic-assisted" — the engine generates signals, but Matthew
-                makes every final trade decision. This combines the objectivity of quantitative
-                analysis with the judgment of an experienced portfolio manager.
-              </p>
+          <div className="p-6 rounded-lg border" style={{ background: "#111", borderColor: "rgba(255,255,255,0.08)" }}>
+            <div className="grid md:grid-cols-3 gap-4 text-center">
+              {[
+                { label: "SOC 2 Compliant", sub: "Institutional-grade security protocols" },
+                { label: "SFOX Prime Execution", sub: "30+ liquidity venues, best-in-class price discovery" },
+                { label: "Zero Security Incidents", sub: "Since inception" },
+              ].map((item) => (
+                <div key={item.label}>
+                  <div className="text-sm font-bold text-white mb-1">{item.label}</div>
+                  <div className="text-gray-500 text-xs">{item.sub}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── APPLY ── */}
-      <section id="apply" className="py-24 px-6">
+      {/* FOUNDER */}
+      <section id="founder" className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <SectionHeader eyebrow="The Founder" title="Matthew Halfacre" />
+          <div className="flex flex-col md:flex-row items-start gap-12 mb-12">
+            <div className="flex-shrink-0 flex flex-col items-center gap-4">
+              <img
+                src={FOUNDER_IMG}
+                alt="Matthew Halfacre"
+                className="w-52 h-52 rounded-full object-cover border-2"
+                style={{ borderColor: ORANGE_BORDER }}
+              />
+              <div className="text-center">
+                <div className="text-xs font-bold uppercase tracking-widest" style={{ color: ORANGE }}>
+                  Founder and CEO
+                </div>
+                <div className="text-gray-400 text-xs mt-1">Halfacre Research</div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <p className="text-gray-200 leading-relaxed mb-5 text-base">
+                Matthew Halfacre is the founder of Halfacre Research, a macroeconomic research firm pioneering Bitcoin-native financial infrastructure. Building on a 69-year family legacy of investment experience, Matthew has systematically automated proprietary, time-tested trading strategies with a singular mission: to generate BTC-denominated alpha for high-net-worth individuals, family offices, and institutional clients.
+              </p>
+              <p className="text-gray-400 leading-relaxed mb-5 text-sm">
+                The Bitcoin Treasury Codex represents a fundamental shift in how sophisticated investors approach digital assets. Rather than measuring success in fiat terms, the Codex treats Bitcoin as the base accounting unit — a truly Bitcoin-native approach built on the same disciplined, data-driven principles that have guided the Halfacre family's investment philosophy for nearly seven decades.
+              </p>
+              <p className="text-gray-400 leading-relaxed text-sm">
+                Matthew is the author of the Bitcoin 2050 Whitepaper, a 42-section, 25-year projection on Bitcoin's path to becoming the global reserve asset. He publishes "The New School" newsletter, delivering biweekly quantitative analysis and Bitcoin market research to over 340 subscribers. His work has been featured in TechBullion and Capital Insight Hub, and he serves as a media source on Qwoted for institutional-grade insights into Bitcoin treasury management.
+              </p>
+            </div>
+          </div>
+
+          {/* Three core philosophy quotes */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: "Most participants in the crypto space are still operating within a fiat matrix. Their ultimate benchmark is their local currency. We asked a different question: what if your fundamental accounting unit was Bitcoin itself? The entire strategic calculus changes.",
+              },
+              {
+                quote: "My family has 69 years of investment experience, and the principles of disciplined, data-driven analysis do not change. What changes is the asset. We have simply translated those time-tested strategies into the native language of Bitcoin.",
+              },
+              {
+                quote: "Institutional adoption of Bitcoin requires institutional-grade infrastructure. That means regulated custody, comprehensive insurance, and algorithmic systems built on a data framework as robust as any major financial institution. We have built that.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="p-6 rounded-lg border relative"
+                style={{ background: "#111", borderColor: ORANGE_BORDER }}>
+                <Quote className="w-6 h-6 mb-4 opacity-40" style={{ color: ORANGE }} />
+                <p className="text-gray-300 text-sm leading-relaxed italic">{item.quote}</p>
+                <div className="text-xs font-bold uppercase tracking-widest mt-4" style={{ color: ORANGE }}>
+                  Matthew Halfacre
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Media features */}
+          <div className="mt-10 p-6 rounded-lg border" style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
+            <div className="text-xs font-bold uppercase tracking-widest text-center mb-6" style={{ color: ORANGE }}>
+              As Featured In
+            </div>
+            <div className="flex flex-wrap justify-center gap-8">
+              {[
+                { name: "TechBullion", sub: "Forging a New Financial Paradigm" },
+                { name: "Capital Insight Hub", sub: "Bitcoin Standard: BTC Alpha Beats USD Pricing" },
+                { name: "Bitcoin 2050 Whitepaper", sub: "42-section, 25-year Bitcoin projection" },
+                { name: "The New School", sub: "340+ subscribers, biweekly Bitcoin intelligence" },
+              ].map((item) => (
+                <div key={item.name} className="text-center">
+                  <div className="text-white text-sm font-bold">{item.name}</div>
+                  <div className="text-gray-500 text-xs mt-1 max-w-[160px]">{item.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-24 px-6 border-t border-white/5" style={{ background: "#0D0D0D" }}>
         <div className="max-w-2xl mx-auto">
           <SectionHeader
-            eyebrow="Request Access"
-            title="Apply for Consideration"
+            eyebrow="Get in Touch"
+            title="Schedule a Consultation"
             sub="CodexYield accepts qualified investors on a selective basis. Complete the form and Matthew will respond within 48 hours."
           />
           {submitted ? (
             <div className="p-8 rounded-lg border text-center"
               style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
               <CheckCircle className="w-12 h-12 mx-auto mb-4" style={{ color: ORANGE }} />
-              <h3 className="text-xl font-bold text-white mb-2">Application Received</h3>
-              <p className="text-gray-400">Matthew will review your application and respond within 48 hours.</p>
+              <h3 className="text-xl font-bold text-white mb-2">Request Received</h3>
+              <p className="text-gray-400">Matthew will review your inquiry and respond within 48 hours.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 p-8 rounded-lg border"
@@ -441,7 +526,7 @@ export default function Home() {
                     placeholder="Your full name" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Email *</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Email Address *</label>
                   <input type="email" required value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 rounded border text-white text-sm outline-none transition-colors"
@@ -450,53 +535,57 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Investable Capital *</label>
-                <select required value={formData.investable}
+                <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Investable Capital Range</label>
+                <select value={formData.investable}
                   onChange={(e) => setFormData({ ...formData, investable: e.target.value })}
-                  className="w-full px-4 py-3 rounded border text-white text-sm outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded border text-white text-sm outline-none"
                   style={{ background: "#0A0A0A", borderColor: "rgba(255,255,255,0.12)" }}>
-                  <option value="">Select range</option>
-                  <option value="100k-250k">$100K – $250K</option>
-                  <option value="250k-500k">$250K – $500K</option>
-                  <option value="500k-1m">$500K – $1M</option>
-                  <option value="1m+">$1M+</option>
+                  <option value="">Select a range</option>
+                  <option value="100k-500k">$100,000 – $500,000</option>
+                  <option value="500k-1m">$500,000 – $1,000,000</option>
+                  <option value="1m-5m">$1,000,000 – $5,000,000</option>
+                  <option value="5m+">$5,000,000+</option>
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Message (Optional)</label>
+                <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Message</label>
                 <textarea rows={4} value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded border text-white text-sm outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded border text-white text-sm outline-none resize-none"
                   style={{ background: "#0A0A0A", borderColor: "rgba(255,255,255,0.12)" }}
-                  placeholder="Tell us about your investment background or ask a question..." />
+                  placeholder="Tell us about your investment goals or any questions you have." />
               </div>
               <button type="submit"
                 className="w-full py-4 rounded font-bold text-black text-sm uppercase tracking-widest transition-all hover:opacity-90"
                 style={{ background: ORANGE }}>
-                Submit Application <ArrowRight className="inline-block ml-2 w-4 h-4" />
+                Submit Request <ArrowRight className="inline-block ml-1 w-4 h-4" />
               </button>
               <p className="text-gray-600 text-xs text-center">
-                This is not an offer to sell securities. For qualified investors only.
+                Minimum investment: $100,000 USD. Qualified investors only. Not an offer of securities.
               </p>
             </form>
           )}
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="py-12 px-6 border-t text-center" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-        <div className="text-lg font-bold mb-2" style={{ color: ORANGE }}>CODEXYIELD</div>
-        <p className="text-gray-600 text-xs mb-4">Halfacre Research · Bitcoin Treasury Management</p>
-        <div className="flex justify-center gap-6 text-xs text-gray-600">
-          <a href="https://codexyield.com" className="hover:text-gray-400 transition-colors">codexyield.com</a>
-          <a href="https://client.codexyield.com" className="hover:text-gray-400 transition-colors">Client Portal</a>
-          <a href="https://tradinghq.codexyield.com" className="hover:text-gray-400 transition-colors">Signal Engine</a>
+      {/* FOOTER */}
+      <footer className="py-12 px-6 border-t border-white/5">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <div className="text-base font-bold" style={{ color: ORANGE }}>BITCOIN TREASURY CODEX</div>
+            <div className="text-gray-600 text-xs mt-1">Operated by Halfacre Research</div>
+          </div>
+          <div className="flex gap-6 text-xs text-gray-600">
+            <a href="https://codexyield.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors">codexyield.com</a>
+            <a href="mailto:matt@halfacreresearch.tech" className="hover:text-gray-400 transition-colors">matt@halfacreresearch.tech</a>
+          </div>
+          <div className="text-gray-700 text-xs text-center md:text-right">
+            Not an offer of securities. For qualified investors only.<br />
+            © 2026 Halfacre Research. All rights reserved.
+          </div>
         </div>
-        <p className="text-gray-700 text-xs mt-6 max-w-xl mx-auto">
-          This presentation is for informational purposes only and does not constitute an offer or solicitation
-          to buy or sell any security. Past performance is not indicative of future results.
-        </p>
       </footer>
+
     </div>
   );
 }

@@ -31,14 +31,7 @@ function Cover() {
   return (
     <Slide>
       <div className="text-center max-w-3xl mx-auto">
-        <div
-          className="inline-block text-xs font-bold uppercase tracking-[0.4em] mb-10 px-4 py-2 rounded border"
-          style={{ color: ORANGE, borderColor: ORANGE_BORDER, background: ORANGE_DIM }}
-        >
-          Confidential — Qualified Investors Only
-        </div>
-
-        {/* Logo mark */}
+        {/* Logo mark */
         <div className="flex justify-center mb-6">
           <div className="w-16 h-16 rounded-full flex items-center justify-center border-2" style={{ borderColor: ORANGE, background: ORANGE_DIM }}>
             <span className="text-2xl font-bold" style={{ color: ORANGE }}>₿</span>
@@ -68,10 +61,6 @@ function Cover() {
           <span>Halfacre Research</span>
           <span style={{ color: ORANGE }}>·</span>
           <span>April 2026</span>
-          <span style={{ color: ORANGE }}>·</span>
-          <span>$100,000 Minimum</span>
-          <span style={{ color: ORANGE }}>·</span>
-          <span>Qualified Investors Only</span>
         </div>
       </div>
     </Slide>

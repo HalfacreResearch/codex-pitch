@@ -215,7 +215,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <Quote className="w-10 h-10 mx-auto mb-8 opacity-30" style={{ color: ORANGE }} />
           <blockquote className="text-2xl md:text-3xl font-light text-white leading-relaxed mb-8 italic">
-            "The promise of Bitcoin was always about building a new system outside the old walls. Yet, many have simply built decorative facades on those same crumbling walls. We are providing the tools to not only escape that matrix but to compete and win on the outside."
+            "The future of investing lies at the nexus of AI, machine learning, blockchain, and quantum computing."
           </blockquote>
           <div className="text-sm font-bold uppercase tracking-widest" style={{ color: ORANGE }}>
             Matthew Halfacre — Founder, Bitcoin Treasury Codex
@@ -228,8 +228,8 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <SectionHeader
             eyebrow="The Philosophy"
-            title="What If Bitcoin Was Your Accounting Unit?"
-            sub="The entire strategic calculus changes when you stop measuring success in fiat terms and start measuring it in Bitcoin."
+            title="Built at the Nexus."
+            sub="AI, machine learning, and blockchain working together today. Quantum computing on the horizon. The Codex is the living expression of that vision."
           />
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="p-8 rounded-lg border" style={{ background: "#111", borderColor: ORANGE_BORDER }}>
@@ -253,9 +253,8 @@ export default function Home() {
           </div>
           <div className="p-6 rounded-lg border text-center" style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
             <p className="text-gray-300 text-sm leading-relaxed max-w-2xl mx-auto">
-              "My family has 69 years of investment experience, and the principles of disciplined, data-driven analysis do not change. What changes is the asset. We have simply translated those time-tested strategies into the native language of Bitcoin."
+              The Codex is already operating at three of the four points of that nexus. AI-driven signal generation. Machine learning models that retrain every night on fresh data. Blockchain analytics that read the on-chain truth directly. The fourth point — quantum computing — is the next frontier, and it is already on the roadmap.
             </p>
-            <div className="text-xs font-bold uppercase tracking-widest mt-4" style={{ color: ORANGE }}>Matthew Halfacre</div>
           </div>
         </div>
       </section>
@@ -452,26 +451,24 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Three core philosophy quotes */}
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* The Nexus — four pillars */}
+          <div className="grid md:grid-cols-4 gap-4">
             {[
-              {
-                quote: "Most participants in the crypto space are still operating within a fiat matrix. Their ultimate benchmark is their local currency. We asked a different question: what if your fundamental accounting unit was Bitcoin itself? The entire strategic calculus changes.",
-              },
-              {
-                quote: "My family has 69 years of investment experience, and the principles of disciplined, data-driven analysis do not change. What changes is the asset. We have simply translated those time-tested strategies into the native language of Bitcoin.",
-              },
-              {
-                quote: "Institutional adoption of Bitcoin requires institutional-grade infrastructure. That means regulated custody, comprehensive insurance, and algorithmic systems built on a data framework as robust as any major financial institution. We have built that.",
-              },
-            ].map((item, i) => (
-              <div key={i} className="p-6 rounded-lg border relative"
-                style={{ background: "#111", borderColor: ORANGE_BORDER }}>
-                <Quote className="w-6 h-6 mb-4 opacity-40" style={{ color: ORANGE }} />
-                <p className="text-gray-300 text-sm leading-relaxed italic">{item.quote}</p>
-                <div className="text-xs font-bold uppercase tracking-widest mt-4" style={{ color: ORANGE }}>
-                  Matthew Halfacre
+              { label: "AI", status: "Live", body: "AI-driven signal generation evaluates 111 factors every single day and identifies the highest-conviction opportunities across four commodity pairs.", active: true },
+              { label: "Machine Learning", status: "Live", body: "7 XGBoost models retrain every night on fresh data. Walk-forward validated. The system learns continuously and never stops improving.", active: true },
+              { label: "Blockchain", status: "Live", body: "On-chain analytics read the Bitcoin network directly — MVRV, exchange flows, miner behavior, UTXO data — the truth that price alone cannot tell.", active: true },
+              { label: "Quantum Computing", status: "Next Frontier", body: "The fourth point of the nexus. As quantum computing matures, the Codex is positioned to integrate it — completing the vision Matthew described.", active: false },
+            ].map((item) => (
+              <div key={item.label} className="p-6 rounded-lg border relative"
+                style={{ background: item.active ? "#111" : "#0D0D0D", borderColor: item.active ? ORANGE_BORDER : "rgba(255,255,255,0.06)" }}>
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="text-sm font-bold" style={{ color: item.active ? ORANGE : "#555" }}>{item.label}</h4>
+                  <span className="text-xs px-2 py-0.5 rounded font-bold uppercase tracking-widest"
+                    style={{ background: item.active ? ORANGE_DIM : "rgba(255,255,255,0.04)", color: item.active ? ORANGE : "#555", border: `1px solid ${item.active ? ORANGE_BORDER : "rgba(255,255,255,0.06)"}` }}>
+                    {item.status}
+                  </span>
                 </div>
+                <p className="text-xs leading-relaxed" style={{ color: item.active ? "#9CA3AF" : "#555" }}>{item.body}</p>
               </div>
             ))}
           </div>

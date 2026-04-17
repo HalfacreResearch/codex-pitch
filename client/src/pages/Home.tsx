@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Shield, Brain, Activity, Zap, Lock, CheckCircle, Quote, Target, TrendingUp } from "lucide-react";
+import { ChevronLeft, ChevronRight, Shield, Lock, CheckCircle, Target, TrendingUp, Cpu } from "lucide-react";
 
 const ORANGE = "#F7931A";
 const ORANGE_DIM = "rgba(247,147,26,0.10)";
@@ -7,7 +7,6 @@ const ORANGE_BORDER = "rgba(247,147,26,0.28)";
 const BG = "#0A0A0A";
 const BG2 = "#0E0E0E";
 
-/* ─── Shared layout wrapper ─────────────────────────────────── */
 function Slide({ children, bg = BG }: { children: React.ReactNode; bg?: string }) {
   return (
     <div
@@ -38,19 +37,33 @@ function Cover() {
         >
           Confidential — Qualified Investors Only
         </div>
-        <div className="text-xs font-bold uppercase tracking-[0.3em] mb-4 text-gray-500">
-          HALFACRE RESEARCH PRESENTS
+
+        {/* Logo mark */}
+        <div className="flex justify-center mb-6">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center border-2" style={{ borderColor: ORANGE, background: ORANGE_DIM }}>
+            <span className="text-2xl font-bold" style={{ color: ORANGE }}>₿</span>
+          </div>
         </div>
-        <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-none tracking-tight text-white">
-          BITCOIN TREASURY<br />
-          <span style={{ color: ORANGE }}>CODEX</span>
+
+        <div className="text-xs font-bold uppercase tracking-[0.3em] mb-3 text-gray-500">
+          Halfacre Research Presents
+        </div>
+        <h1 className="text-6xl md:text-7xl font-bold mb-4 leading-none tracking-tight text-white">
+          Bitcoin Treasury<br />
+          <span style={{ color: ORANGE }}>Codex</span>
         </h1>
-        <p className="text-lg text-gray-400 mb-4 max-w-xl mx-auto leading-relaxed">
-          Institutional-grade Bitcoin accumulation powered by AI, machine learning, and blockchain
+
+        {/* Quote as slogan */}
+        <p className="text-sm italic text-gray-400 mb-8 max-w-lg mx-auto leading-relaxed">
+          "The future of investing lies at the nexus of AI, machine learning, blockchain, and quantum computing."
         </p>
-        <p className="text-base font-semibold uppercase tracking-widest mb-12" style={{ color: ORANGE }}>
+
+        <div className="h-px w-16 mx-auto mb-6" style={{ background: ORANGE_BORDER }} />
+
+        <p className="text-base font-semibold uppercase tracking-widest mb-10" style={{ color: ORANGE }}>
           Not more dollars. More Bitcoin.
         </p>
+
         <div className="flex flex-wrap justify-center gap-6 text-xs text-gray-600 uppercase tracking-widest">
           <span>Halfacre Research</span>
           <span style={{ color: ORANGE }}>·</span>
@@ -109,32 +122,10 @@ function Problem() {
   );
 }
 
-/* ─── SLIDE 3: THE VISION ────────────────────────────────────── */
-function Vision() {
-  return (
-    <Slide>
-      <div className="text-center max-w-3xl mx-auto">
-        <Eyebrow text="The Vision" />
-        <Quote className="w-10 h-10 mx-auto mb-8 opacity-25" style={{ color: ORANGE }} />
-        <blockquote className="text-3xl md:text-4xl font-light text-white leading-relaxed mb-8 italic">
-          "The future of investing lies at the nexus of AI, machine learning, blockchain, and quantum computing."
-        </blockquote>
-        <div className="text-sm font-bold uppercase tracking-widest mb-10" style={{ color: ORANGE }}>
-          Matthew Halfacre — Founder, Bitcoin Treasury Codex
-        </div>
-        <div className="h-px w-24 mx-auto mb-8" style={{ background: ORANGE_BORDER }} />
-        <p className="text-gray-400 text-base leading-relaxed">
-          The Codex is the living expression of that vision. Three of the four pillars are live today. The fourth is on the roadmap.
-        </p>
-      </div>
-    </Slide>
-  );
-}
-
-/* ─── SLIDE 4: THE SOLUTION ──────────────────────────────────── */
+/* ─── SLIDE 3: THE SOLUTION ──────────────────────────────────── */
 function Solution() {
   return (
-    <Slide bg={BG2}>
+    <Slide>
       <div className="w-full max-w-5xl mx-auto grid grid-cols-2 gap-16 items-center">
         <div>
           <Eyebrow text="The Solution" />
@@ -142,12 +133,12 @@ function Solution() {
             Accumulate More Bitcoin.<br />Systematically.
           </h2>
           <p className="text-gray-300 leading-relaxed mb-6 text-sm">
-            The Bitcoin Treasury Codex uses AI-driven signal generation, machine learning models, and on-chain blockchain analytics to identify moments when select commodity assets present asymmetric opportunities relative to Bitcoin. When those moments occur, the system rotates a measured portion of holdings into the target asset. When the asset outperforms, it converts back — resulting in more Bitcoin than the rotation started with.
+            The Bitcoin Treasury Codex uses AI-driven signal generation, machine learning models, and on-chain blockchain analytics to identify moments when select commodity assets present asymmetric opportunities relative to Bitcoin. When those moments occur, the system rotates a measured portion of holdings into the target asset. When the asset outperforms, it converts back, resulting in more Bitcoin than the rotation started with.
           </p>
           <div className="space-y-3">
             {[
               "Spot commodities only. No leverage. No derivatives. No speculation.",
-              "Algorithmic-assisted — Matthew makes every final trade decision.",
+              "Algorithmic-assisted. Matthew makes every final trade decision.",
               "Bitcoin is always the base accounting unit. Every result is measured in BTC.",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
@@ -177,33 +168,44 @@ function Solution() {
   );
 }
 
-/* ─── SLIDE 5: THE TECHNOLOGY ────────────────────────────────── */
+/* ─── SLIDE 4: THE TECHNOLOGY ────────────────────────────────── */
 function Technology() {
   const pillars = [
-    { label: "Artificial Intelligence", status: "LIVE", body: "AI-driven signal generation evaluates 111 quantitative factors every day across four commodity pairs, identifying the highest-conviction rotation opportunities.", active: true },
-    { label: "Machine Learning", status: "LIVE", body: "7 XGBoost models retrain nightly on fresh data. Walk-forward validated against 10+ years of history. The system learns continuously.", active: true },
-    { label: "Blockchain", status: "LIVE", body: "On-chain analytics read the Bitcoin network directly: MVRV ratio, exchange net flows, miner behavior, UTXO data, and 40+ additional on-chain signals.", active: true },
-    { label: "Quantum Computing", status: "NEXT FRONTIER", body: "The fourth point of the nexus. As quantum computing matures, the Codex is positioned to integrate it — completing the vision.", active: false },
+    {
+      icon: <Cpu className="w-6 h-6" />,
+      label: "Artificial Intelligence",
+      body: "AI-driven signal generation evaluates over 100 quantitative factors every day across four commodity pairs, identifying the highest-conviction rotation opportunities.",
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6" />,
+      label: "Machine Learning",
+      body: "Predictive models retrain nightly on fresh data. Walk-forward validated against more than a decade of history. The system learns continuously and adapts to changing market conditions.",
+    },
+    {
+      icon: <Shield className="w-6 h-6" />,
+      label: "Blockchain Analytics",
+      body: "On-chain analytics read the Bitcoin network directly. Miner behavior, exchange flows, network activity, and holder patterns are all factored into every signal the system generates.",
+    },
   ];
   return (
-    <Slide>
+    <Slide bg={BG2}>
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <Eyebrow text="The Technology" />
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Built at the Nexus.</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white">Three Pillars. One System.</h2>
+          <p className="text-gray-500 text-sm mt-4 max-w-xl mx-auto">
+            The Codex sits at the intersection of artificial intelligence, machine learning, and blockchain analytics. Each pillar reinforces the others.
+          </p>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-6">
           {pillars.map((p) => (
-            <div key={p.label} className="p-6 rounded-lg border flex flex-col"
-              style={{ background: p.active ? "#111" : "#0C0C0C", borderColor: p.active ? ORANGE_BORDER : "rgba(255,255,255,0.05)" }}>
-              <div className="flex items-center justify-between mb-4">
-                <h4 className="text-sm font-bold leading-tight" style={{ color: p.active ? ORANGE : "#444" }}>{p.label}</h4>
+            <div key={p.label} className="p-8 rounded-lg border flex flex-col"
+              style={{ background: "#111", borderColor: ORANGE_BORDER }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-5" style={{ background: ORANGE_DIM, color: ORANGE }}>
+                {p.icon}
               </div>
-              <span className="text-xs px-2 py-1 rounded font-bold uppercase tracking-widest self-start mb-4"
-                style={{ background: p.active ? ORANGE_DIM : "rgba(255,255,255,0.03)", color: p.active ? ORANGE : "#444", border: `1px solid ${p.active ? ORANGE_BORDER : "rgba(255,255,255,0.05)"}` }}>
-                {p.status}
-              </span>
-              <p className="text-xs leading-relaxed flex-1" style={{ color: p.active ? "#9CA3AF" : "#444" }}>{p.body}</p>
+              <h4 className="text-base font-bold mb-4 text-white">{p.label}</h4>
+              <p className="text-gray-400 text-sm leading-relaxed flex-1">{p.body}</p>
             </div>
           ))}
         </div>
@@ -212,16 +214,16 @@ function Technology() {
   );
 }
 
-/* ─── SLIDE 6: HOW IT WORKS ──────────────────────────────────── */
+/* ─── SLIDE 5: HOW IT WORKS ──────────────────────────────────── */
 function HowItWorks() {
   const stats = [
-    { value: "111", label: "Quantitative Factors" },
+    { value: "100+", label: "Quantitative Factors" },
     { value: "4", label: "Rotation Pairs" },
     { value: "10+", label: "Years of History" },
     { value: "Daily", label: "Signal Generation" },
   ];
   return (
-    <Slide bg={BG2}>
+    <Slide>
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <Eyebrow text="The System" />
@@ -232,14 +234,14 @@ function HowItWorks() {
             <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>DCA Engine</div>
             <h3 className="text-lg font-bold text-white mb-4">Smarter Bitcoin Accumulation</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              The same 111-factor system identifies optimal USD-to-Bitcoin entry points. Rather than fixed-interval dollar-cost averaging, capital is deployed at algorithmically timed moments — accumulating more Bitcoin per dollar deployed and reducing average cost basis over time.
+              The system identifies optimal USD-to-Bitcoin entry points using the same quantitative intelligence that powers the rotation engine. Rather than fixed-interval dollar-cost averaging, capital is deployed at algorithmically timed moments, accumulating more Bitcoin per dollar deployed.
             </p>
           </div>
           <div className="p-8 rounded-lg border" style={{ background: "#111", borderColor: ORANGE_BORDER }}>
             <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>Rotation Engine</div>
             <h3 className="text-lg font-bold text-white mb-4">Systematic Bitcoin Growth</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              When high-conviction signals align across ETH, SOL, XRP, or LINK, capital rotates from Bitcoin into the target commodity. Positions are entered in tranches. All exits are manual — Matthew's final call on every trade.
+              When high-conviction signals align across ETH, SOL, XRP, or LINK, capital rotates from Bitcoin into the target commodity. Positions are entered in tranches. All exits are manual. Matthew makes every final call on every trade.
             </p>
           </div>
         </div>
@@ -256,68 +258,55 @@ function HowItWorks() {
   );
 }
 
-/* ─── SLIDE 7: PERFORMANCE ───────────────────────────────────── */
+/* ─── SLIDE 6: PERFORMANCE ───────────────────────────────────── */
 function Performance() {
-  const rows = [
-    { pair: "ETH/BTC", factor: "Stablecoin Supply Ratio", type: "On-Chain", period: "2017–2026" },
-    { pair: "ETH/BTC", factor: "Yield Curve Spread", type: "Macro", period: "2018–2026" },
-    { pair: "ETH/BTC", factor: "UTXO Count Change", type: "On-Chain", period: "2017–2026" },
-    { pair: "ETH/BTC", factor: "Treasury 10Y Rate", type: "Macro", period: "2018–2026" },
-    { pair: "ETH/BTC", factor: "RSI 7", type: "Technical", period: "2017–2026" },
-  ];
   return (
-    <Slide>
+    <Slide bg={BG2}>
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <Eyebrow text="Backtested Performance" />
+          <Eyebrow text="Performance" />
           <h2 className="text-4xl font-bold text-white mb-3">The Target: More Than 5% Additional Bitcoin Per Year.</h2>
           <p className="text-gray-500 text-sm max-w-2xl mx-auto">
-            111 factors backtested against real historical data from 2015 to 2026. Realistic transaction costs applied throughout. Results expressed in BTC-denominated annual return.
+            The Codex is built to one standard. Every signal, every model, every trade decision is evaluated against a single question: does this accumulate more Bitcoin?
           </p>
         </div>
-        <div className="rounded-lg border overflow-hidden mb-6" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-          <table className="w-full text-sm">
-            <thead>
-              <tr style={{ background: "#111", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                {["Pair", "Factor", "Signal Type", "Period"].map((h) => (
-                  <th key={h} className="px-5 py-3 text-left text-xs font-bold uppercase tracking-widest" style={{ color: ORANGE }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r, i) => (
-                <tr key={i} style={{ background: i % 2 === 0 ? BG : BG2, borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                  <td className="px-5 py-3 font-mono font-semibold text-white">{r.pair}</td>
-                  <td className="px-5 py-3 text-gray-300">{r.factor}</td>
-                  <td className="px-5 py-3 text-gray-400">{r.type}</td>
-                  <td className="px-5 py-3 text-gray-500">{r.period}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+        <div className="grid grid-cols-2 gap-6 mb-6">
+          <div className="p-8 rounded-lg border" style={{ background: "#111", borderColor: ORANGE_BORDER }}>
+            <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: ORANGE }}>How We Measure</div>
+            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              Performance is measured exclusively in Bitcoin-denominated terms. Not dollar returns. Not percentage gains on fiat. The only number that matters is: how much more Bitcoin does a client hold after each completed rotation?
+            </p>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Every strategy is backtested against more than a decade of real historical data with realistic transaction costs applied throughout. Forward performance tracking began April 2026.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            {[
+              { value: ">5% BTC/yr", label: "System Target", sub: "Additional Bitcoin above buy-and-hold" },
+              { value: "10+ Years", label: "Backtested History", sub: "Real historical data, 2015 to present" },
+              { value: "Live April 2026", label: "Forward Tracking", sub: "Every signal tracked against real outcomes" },
+            ].map((s) => (
+              <div key={s.label} className="p-5 rounded-lg border flex items-center gap-5" style={{ background: "#111", borderColor: "rgba(255,255,255,0.08)" }}>
+                <div className="text-xl font-bold font-mono flex-shrink-0 w-32 text-right" style={{ color: ORANGE }}>{s.value}</div>
+                <div>
+                  <div className="text-white text-xs font-bold uppercase tracking-widest">{s.label}</div>
+                  <div className="text-gray-500 text-xs mt-0.5">{s.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-3 gap-4 mb-4">
-          {[
-            { label: "System Target", value: ">5% BTC/yr", sub: "Above buy-and-hold" },
-            { label: "Data History", value: "10+ Years", sub: "Daily candles, 2015–present" },
-            { label: "Forward Tracking", value: "Live April 2026", sub: "Every signal tracked vs. real outcomes" },
-          ].map((s) => (
-            <div key={s.label} className="p-4 rounded-lg border text-center" style={{ background: ORANGE_DIM, borderColor: ORANGE_BORDER }}>
-              <div className="text-lg font-bold font-mono mb-1" style={{ color: ORANGE }}>{s.value}</div>
-              <div className="text-white text-xs font-bold uppercase tracking-widest">{s.label}</div>
-              <div className="text-gray-600 text-xs mt-1">{s.sub}</div>
-            </div>
-          ))}
-        </div>
+
         <p className="text-gray-700 text-xs text-center">
-          Backtested results do not guarantee future performance. Realistic transaction costs applied throughout. Forward performance tracking began April 2026. For qualified investors only.
+          Backtested results do not guarantee future performance. Realistic transaction costs applied throughout. For qualified investors only.
         </p>
       </div>
     </Slide>
   );
 }
 
-/* ─── SLIDE 8: SECURITY ──────────────────────────────────────── */
+/* ─── SLIDE 7: SECURITY ──────────────────────────────────────── */
 function Security() {
   const cards = [
     { icon: <Shield className="w-6 h-6" />, title: "$200M Insurance", body: "Digital assets protected by a $200 million insurance policy. Institutional-grade coverage that matches the seriousness of the capital at stake." },
@@ -325,7 +314,7 @@ function Security() {
     { icon: <CheckCircle className="w-6 h-6" />, title: "Client-Controlled Accounts", body: "Every client owns their own account. Halfacre Research holds trading permissions only. Zero withdrawal rights. Your assets remain under your control at all times." },
   ];
   return (
-    <Slide bg={BG2}>
+    <Slide>
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <Eyebrow text="Security and Custody" />
@@ -359,17 +348,17 @@ function Security() {
   );
 }
 
-/* ─── SLIDE 9: THE FOUNDER ───────────────────────────────────── */
+/* ─── SLIDE 8: THE FOUNDER ───────────────────────────────────── */
 function Founder() {
   return (
-    <Slide>
-      <div className="w-full max-w-5xl mx-auto grid grid-cols-2 gap-16 items-start">
+    <Slide bg={BG2}>
+      <div className="w-full max-w-5xl mx-auto grid grid-cols-2 gap-16 items-center">
         <div className="flex flex-col items-center text-center">
           <img
-            src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663096452459/CmqeCOjCelCcyIJP.png"
+            src="/matt-headshot.png"
             alt="Matthew Halfacre"
-            className="w-48 h-48 rounded-full object-cover border-2 mb-6"
-            style={{ borderColor: ORANGE_BORDER }}
+            className="w-52 h-64 object-contain mb-6"
+            style={{ filter: "drop-shadow(0 0 24px rgba(247,147,26,0.15))" }}
           />
           <h2 className="text-3xl font-bold text-white mb-1">Matthew Halfacre</h2>
           <div className="text-sm font-bold uppercase tracking-widest mb-6" style={{ color: ORANGE }}>
@@ -392,7 +381,7 @@ function Founder() {
         <div>
           <Eyebrow text="The Founder" />
           <p className="text-gray-200 leading-relaxed mb-5 text-sm">
-            Matthew Halfacre is the founder of Halfacre Research, a quantitative research firm building Bitcoin-native financial infrastructure. Drawing on a 69-year family legacy of investment experience, Matthew has systematically translated time-tested, disciplined investment principles into the native language of Bitcoin — with a singular mission: to generate BTC-denominated alpha for serious Bitcoin holders.
+            Matthew Halfacre is the founder of Halfacre Research, a quantitative research firm building Bitcoin-native financial infrastructure. Drawing on a 69-year family legacy of investment experience, Matthew has systematically translated time-tested, disciplined investment principles into the native language of Bitcoin, with a singular mission: to generate BTC-denominated alpha for serious Bitcoin holders.
           </p>
           <p className="text-gray-400 leading-relaxed mb-6 text-sm">
             Matthew is the author of the Bitcoin 2050 Whitepaper, a 42-section, 25-year projection on Bitcoin's path to global reserve asset status. He publishes The New School newsletter, delivering biweekly quantitative Bitcoin intelligence to over 340 subscribers. His work has been featured in TechBullion and Capital Insight Hub, and he serves as a media source on Qwoted for institutional Bitcoin insights.
@@ -419,10 +408,10 @@ function Founder() {
   );
 }
 
-/* ─── SLIDE 10: NEXT STEPS ───────────────────────────────────── */
+/* ─── SLIDE 9: NEXT STEPS ───────────────────────────────────── */
 function NextSteps() {
   return (
-    <Slide bg={BG2}>
+    <Slide>
       <div className="text-center max-w-2xl mx-auto">
         <Eyebrow text="Get in Touch" />
         <h2 className="text-5xl font-bold text-white mb-6">Schedule a Consultation.</h2>
@@ -444,7 +433,7 @@ function NextSteps() {
         </div>
         <p className="text-gray-700 text-xs leading-relaxed">
           Not an offer of securities. All assets are spot commodities. For qualified investors only.<br />
-          Halfacre Research is not a licensed financial advisor. © 2026 Halfacre Research. All rights reserved.
+          Halfacre Research is not a licensed financial advisor. Copyright 2026 Halfacre Research. All rights reserved.
         </p>
       </div>
     </Slide>
@@ -455,14 +444,13 @@ function NextSteps() {
 const SLIDES = [
   { id: 1, label: "Cover", component: <Cover /> },
   { id: 2, label: "The Problem", component: <Problem /> },
-  { id: 3, label: "The Vision", component: <Vision /> },
-  { id: 4, label: "The Solution", component: <Solution /> },
-  { id: 5, label: "The Technology", component: <Technology /> },
-  { id: 6, label: "How It Works", component: <HowItWorks /> },
-  { id: 7, label: "Performance", component: <Performance /> },
-  { id: 8, label: "Security", component: <Security /> },
-  { id: 9, label: "The Founder", component: <Founder /> },
-  { id: 10, label: "Next Steps", component: <NextSteps /> },
+  { id: 3, label: "The Solution", component: <Solution /> },
+  { id: 4, label: "The Technology", component: <Technology /> },
+  { id: 5, label: "How It Works", component: <HowItWorks /> },
+  { id: 6, label: "Performance", component: <Performance /> },
+  { id: 7, label: "Security", component: <Security /> },
+  { id: 8, label: "The Founder", component: <Founder /> },
+  { id: 9, label: "Next Steps", component: <NextSteps /> },
 ];
 
 /* ─── MAIN DECK COMPONENT ────────────────────────────────────── */
@@ -484,7 +472,6 @@ export default function Home() {
 
   return (
     <div className="fixed inset-0 overflow-hidden" style={{ background: BG }}>
-      {/* Slide content */}
       <div className="w-full h-full">
         {SLIDES[current].component}
       </div>
@@ -507,7 +494,7 @@ export default function Home() {
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* Slide counter */}
+      {/* Dot navigation */}
       <div
         className="fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-2 rounded-full border"
         style={{ background: "rgba(10,10,10,0.9)", borderColor: ORANGE_BORDER }}
@@ -537,9 +524,8 @@ export default function Home() {
         {SLIDES[current].label}
       </div>
 
-      {/* Keyboard hint */}
       <div className="fixed bottom-6 right-6 text-gray-700 text-xs hidden md:block">
-        Use ← → arrow keys to navigate
+        Use arrow keys to navigate
       </div>
     </div>
   );

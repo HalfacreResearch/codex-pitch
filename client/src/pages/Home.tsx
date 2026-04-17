@@ -127,8 +127,8 @@ function Solution() {
           <div className="space-y-3">
             {[
               "Spot commodities only. No leverage. No derivatives. No speculation.",
-              "Algorithmic-assisted. Matthew makes every final trade decision.",
               "Bitcoin is always the base accounting unit. Every result is measured in BTC.",
+              "Institutional-grade infrastructure. Regulated custody. Comprehensive insurance.",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
                 <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: ORANGE }} />

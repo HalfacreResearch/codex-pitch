@@ -401,29 +401,45 @@ function Founder() {
 function NextSteps() {
   return (
     <Slide>
-      <div className="text-center max-w-2xl mx-auto">
-        <Eyebrow text="Get in Touch" />
-        <h2 className="text-5xl font-bold text-white mb-6">Schedule a Consultation.</h2>
-        <p className="text-gray-400 text-base leading-relaxed mb-10">
-          The Bitcoin Treasury Codex accepts qualified investors on a selective basis. If you are serious about growing your Bitcoin holdings with institutional-grade infrastructure, we want to hear from you.
-        </p>
-        <div className="flex flex-col gap-4 items-center mb-10">
+      <div className="w-full max-w-5xl mx-auto grid grid-cols-2 gap-16 items-center">
+        {/* Left: closing statement */}
+        <div>
+          <Eyebrow text="Get in Touch" />
+          <h2 className="text-5xl font-bold text-white mb-6 leading-tight">
+            The goal is simple.<br />
+            <span style={{ color: ORANGE }}>More Bitcoin.</span>
+          </h2>
+          <p className="text-gray-400 text-base leading-relaxed mb-8">
+            The Bitcoin Treasury Codex accepts investors on a selective basis. If you are serious about growing your Bitcoin holdings with institutional-grade infrastructure, we want to hear from you.
+          </p>
+          <p className="text-gray-700 text-xs leading-relaxed">
+            Not an offer of securities. All assets are spot commodities.<br />
+            Halfacre Research is not a licensed financial advisor.<br />
+            Copyright 2026 Halfacre Research. All rights reserved.
+          </p>
+        </div>
+
+        {/* Right: contact card */}
+        <div className="flex flex-col gap-5">
+          {/* Big Bitcoin symbol */}
+          <div className="flex justify-center mb-2">
+            <div className="w-24 h-24 rounded-full flex items-center justify-center border-2"
+              style={{ borderColor: ORANGE, background: ORANGE_DIM }}>
+              <span className="text-5xl font-bold" style={{ color: ORANGE }}>₿</span>
+            </div>
+          </div>
           {[
             { label: "Email", value: "matt@halfacreresearch.tech" },
             { label: "Website", value: "codexyield.com" },
             { label: "Minimum", value: "$100,000 USD" },
           ].map((c) => (
-            <div key={c.label} className="flex items-center gap-4 px-8 py-4 rounded-lg border w-full max-w-sm justify-between"
+            <div key={c.label} className="flex items-center gap-4 px-8 py-5 rounded-lg border justify-between"
               style={{ background: "#111", borderColor: ORANGE_BORDER }}>
               <span className="text-xs font-bold uppercase tracking-widest text-gray-500">{c.label}</span>
-              <span className="text-sm font-semibold" style={{ color: ORANGE }}>{c.value}</span>
+              <span className="text-sm font-bold" style={{ color: ORANGE }}>{c.value}</span>
             </div>
           ))}
         </div>
-        <p className="text-gray-700 text-xs leading-relaxed">
-          Not an offer of securities. All assets are spot commodities. For qualified investors only.<br />
-          Halfacre Research is not a licensed financial advisor. Copyright 2026 Halfacre Research. All rights reserved.
-        </p>
       </div>
     </Slide>
   );

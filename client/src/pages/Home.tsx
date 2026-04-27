@@ -31,7 +31,7 @@ function Cover() {
   return (
     <Slide>
       <div className="text-center max-w-3xl mx-auto">
-        {/* Logo mark */
+        {/* Logo mark */}
         <div className="flex justify-center mb-6">
           <div className="w-16 h-16 rounded-full flex items-center justify-center border-2" style={{ borderColor: ORANGE, background: ORANGE_DIM }}>
             <span className="text-2xl font-bold" style={{ color: ORANGE }}>₿</span>
